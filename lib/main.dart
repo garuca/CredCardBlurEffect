@@ -25,34 +25,51 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(""),
-        elevation: 0,
-      ),
-      body: Stack(
-        children: <Widget>[
-          Container(
-            color: Theme.of(context).primaryColor,
-            height: MediaQuery.of(context).size.height * 0.2,
+    return Stack(children: <Widget>[
+      Positioned(
+        top: -(MediaQuery.of(context).size.height / 2),
+        left: -(MediaQuery.of(context).size.width / 2),
+        child: Container(
+          height: MediaQuery.of(context).size.height +
+              MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width +
+              MediaQuery.of(context).size.width * 0.52,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+                colors: [
+                  const Color(0xFFFFB788),
+                  const Color(0xFFFF5A87),
+                ],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                tileMode: TileMode.clamp),
           ),
-          Container(
-              padding: EdgeInsets.fromLTRB(
-                  16, MediaQuery.of(context).size.height * 0.1, 16, 16),
-              child: CenterHorizontal(ClipRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    decoration: new BoxDecoration(
-                        color: Colors.grey.shade200.withOpacity(0.5)),
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    width: MediaQuery.of(context).size.height * 0.4,
-                  ),
-                ),
-              )))
-        ],
+        ),
       ),
-    );
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: Builder(
+            builder: (context) => IconButton(
+                  icon: new Icon(Icons.menu),
+                  onPressed: () {},
+                ),
+        ),
+          actions: <Widget>[
+             Padding(child: CircleAvatar(radius: 16,),padding: EdgeInsets.fromLTRB(0, 0, 8, 0),)
+             
+           
+          ],
+        ),
+        body: Container(
+          color: Colors.transparent,
+        ),
+      ),
+    ]);
   }
 }
 
